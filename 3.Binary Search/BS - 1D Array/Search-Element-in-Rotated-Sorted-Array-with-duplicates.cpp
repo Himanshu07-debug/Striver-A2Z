@@ -4,11 +4,13 @@
 // means we have to handle only the duplicates part, for the rest of the thing, that code will work
 
 // More specifically, Rotated wala approach tab nhi chalega jab arr[low] = arr[mid] = arr[high].
+// Jab teeno values same hai to hum correctly batana sorted half konsa hai is not possible, so there are possibility
+// hai wrong half me enter krne ki
 // To understand the problem -> [1,0,1,1,1], SEE this
 
 // condition arr[mid] == k ko test karne ke baad we are assure that ki arr[mid]==k nhi hai
 // so in this case, arr[low] = arr[mid] = arr[high] , hum dono taraf se boundary kam kar sakte hai, kyuki yeah answer 
-// kabhi nhi honge
+// kabhi nhi honge, i.e TRIMIING THE SEARCH SPACE
 
 // Agar aap aache se sochonge test case then your answer can be at any side of the current mid, Isliye answer lose na 
 // hoye galat selection se, it is safe to reduce the search space when we are assured

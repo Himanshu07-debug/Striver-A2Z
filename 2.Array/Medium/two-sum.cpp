@@ -10,6 +10,9 @@
 
 // Better -> O(n) + O(n) [ HashSet (for 1st variant) / HashMap (for 2nd Variant) ]
 
+// DIS-ADVANTAGE OF Hashset/hashmap -> In worst Case, find() takes O(n) time
+
+// If Interviewer do not allow you to use HashMap, then ->
 // Optimal -> O(n*logn) + O(1) [ 2-pointer Approach ]
 
 

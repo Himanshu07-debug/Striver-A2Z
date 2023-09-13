@@ -1,0 +1,22 @@
+## Inplace has two definitons:
+
+STRICT definition is ->
+An in-place algorithm is an algorithm that does not need an extra space and produces an output in the same memory 
+that contains the data by transforming the input ‘in-place’. However, a small constant extra space used for variables 
+is allowed.
+
+// EXAMPLES ->
+Bubble sort, Insertion sort, etc.. ( extra space nhi lete, given array ko hi update kar dete hai O/P me )
+
+
+BROAD definition is ->
+In-place means that the algorithm does not use extra space for manipulating the input (jo bhi manipulation hai given
+i/p memory me hi ) but may require a small though non-constant extra space for its operation. 
+Usually, this space is O(log n), though sometimes anything in O(n) (Smaller than linear) is allowed.
+
+
+// EXAMPLES ->
+Quick sort  ( extra space required is not used to manipulate input, but only for recursive calls. )
+
+Q. Merge sort is not IN-PLACE ?
+Ans : Extra Space ( O(n) ) made by recursive calls is done to manipulate the I/P
