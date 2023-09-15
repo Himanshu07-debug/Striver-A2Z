@@ -8,6 +8,13 @@
 // Optimal -> O(n) + O(1)
 
 
+// Optimal -> MOORE'S VOTING ALGORITHM
+
+// Apne pass ek element hai jiska cnt n/2 se jyada hai, this means that ki baaki elements ka cnt n/2 se kam hai,
+// Agar hum majority element ke cnt ko cancel kiye baaki elements se definitely hum cnt>0 milna chahiye
+// So in this algorithm, hum hypotetically elements ko majority select kar rhe hai aur uske cnt ko selected element
+// ke equal no. aane pe add aur different aane pe cancel becz we are sure agar yeah element majority hai to cnt 0
+// nhi hone denga, agar diya select another majority element
 
 
 #include <bits/stdc++.h>
@@ -22,6 +29,8 @@ int majorityElement(vector<int> v) {
 
     //applying the algorithm:
     for (int i = 0; i < n; i++) {
+
+        // last selected element majority nhi hai, start with new 
         if (cnt == 0) {
             cnt = 1;
             el = v[i];
@@ -30,8 +39,8 @@ int majorityElement(vector<int> v) {
         else cnt--;
     }
 
-    //checking if the stored element
-    // is the majority element:
+    // If question states that there might exist majority element, then check that the hypothetical selected element 
+    // is exactly majority element or not, kyuki array me majority na ho iski bhi possibility hai
     int cnt1 = 0;
     for (int i = 0; i < n; i++) {
         if (v[i] == el) cnt1++;
@@ -39,6 +48,8 @@ int majorityElement(vector<int> v) {
 
     if (cnt1 > (n / 2)) return el;
     return -1;
+
+    // If question states that there must exists a majority element, no need to write second loop
 }
 
 int main()
