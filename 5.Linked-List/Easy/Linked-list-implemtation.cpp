@@ -13,6 +13,8 @@ struct node {
 
 };
 
+// PRINT LINKED LIST
+
 void printLinkedList(node* head){
 
     node* curr = head;

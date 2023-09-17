@@ -13,39 +13,45 @@ struct node {
 
 };
 
-// INSERTION AT FIRST
+// DELETION AT FIRST
 
-node* insertAtFirst(node *head, int x){
+node* deleteAtFirst(node* head){
 
-    node* temp = new node(x);
-    temp->next = head;
+    if(head==NULL){
+        return NULL;
+    }
+
+    node* temp = head->next;
+
+    delete head;
 
     return temp;
 
 }
 
-// INSERTION AT LAST
+// DELETION AT LAST
 
-node* insertAtLast(node* head, int x){
+node* deleteAtLast(node* head){
 
-    node* temp = new node(x);
-
-    if(head==NULL){
-        return temp;
+    if(head == NULL || head->next ==NULL){
+        return NULL;
     }
 
-    node* curr= head;
+    node* curr = head;
 
-    while(curr->next!=NULL){
-        curr=curr->next;
+    while(curr->next->next != NULL){
+        curr= curr->next;
     }
 
-    curr->next=temp;
+    node* temp = curr->next;
+
+    curr->next = NULL;
+
+    delete temp;
 
     return head;
-
+    
 }
-
 
 // PRINT LINKED LIST
 
@@ -66,11 +72,11 @@ int main(){
     node* head = new node(10);
     head->next = new node(20);
     head->next->next = new node(30);
-    
-    head = insertAtFirst(head,5);
+
+    head = deleteAtFirst(head);
     printLinkedList(head);
 
-    head = insertAtLast(head, 70);
+    head = deleteAtLast(head);
     printLinkedList(head);
 
 }
