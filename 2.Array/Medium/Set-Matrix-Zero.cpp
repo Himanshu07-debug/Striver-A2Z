@@ -109,8 +109,68 @@ vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
 // OPTIMAL --------------------------------------------------->>
 
 // Instead of using 2 array to keep track of 0's, we can use the first row and first col of original matrix to do this
+// I/P matrix ke first row aur first column me 0 hai ki nhi yeah handle krne ke liye hum row and col naam ke 2 bool 
+// varaibles le sakte hai jo batayenge ki O/P matrix me first row ko OR first column ko 0 krna hai kya
+
+// OBSERVE, there is no need of taking marker variable for row, kyuki agar usme hua to matrix[0][0] ko update kar denga
+// wo, hum usase check kar payenge, humko sirf j ko handle krna hai
+
 // TIME -> O( 2*(N*M) )
 // SPACE -> O(1)
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
+
+    int col0 = 1;
+    // int row = 1;
+
+    // step 1: Traverse the matrix and mark 1st row & col accordingly:
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (matrix[i][j] == 0) {
+                // if(i==0) row=0;
+                // else:
+                matrix[i][0] = 0;
+
+                // Hum j ko allow nhi kar sakte matrix[0][0] ko update krna, therefore j=0 ko handle kiye
+                if (j != 0)       
+                    matrix[0][j] = 0;
+                else
+                    col0 = 0;
+            }
+        }
+    }
+
+    // Step 2: Mark with 0 from (1,1) to (n-1, m-1):
+    for (int i = 1; i < n; i++) {
+        for (int j = 1; j < m; j++) {
+            if (matrix[i][j] != 0) {
+                // check for col & row:
+                if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+
+    //step 3: Finally mark the 1st row & then 1st col:
+    if (matrix[0][0] == 0) {
+        for (int j = 0; j < m; j++) {
+            matrix[0][j] = 0;
+        }
+    }
+    if (col0 == 0) {
+        for (int i = 0; i < n; i++) {
+            matrix[i][0] = 0;
+        }
+    }
+
+    return matrix;
+}
+
 
 int main()
 {
