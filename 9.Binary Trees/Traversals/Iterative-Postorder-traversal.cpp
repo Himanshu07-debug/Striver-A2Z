@@ -34,6 +34,9 @@ struct node{
 
 // S2 is only for printing the postOrder Traversal
 
+// TIME -> O(N)
+// SPACE -> O(N) + O(N)
+
 
 vector<int> iterativePostOrderTraversal(node* root){
 
@@ -80,6 +83,64 @@ vector<int> iterativePostOrderTraversal(node* root){
 // USING SINGLE STACK -> 
 
 
+// Just think what we have to do -> Humko as left to left possible node pe jana hai, now ab leftmost node pe left 
+// child nhi honga, so we are sure humko right child jana hai, firse uske leftmost me jana hai iff possible
+
+
+// TIME -> O(2*N) [ If Skew tree tilted at right side rhi to andar wala while loop bhi O(N) chalega ]
+// SPACE -> O(N)
+
+vector<int> IterativePostOrderTraversal(node* root){
+
+    vector<int> postOrder;
+
+    if(root == NULL){
+        return postOrder;
+    }
+
+    stack<node*>s;
+
+    node* curr=root;
+    
+    while(curr!=NULL || !s.empty()){
+
+        if(curr!=NULL){
+            s.push(curr);
+            curr=curr->left;
+        }
+        else{
+            
+            // We are ensured that ki left child NULL hai becz LEFTMOST 
+            node * temp = s.top() -> right;
+
+            // if no right child
+            if (temp == NULL) {
+
+                // latest added parent ko select kro
+                temp = s.top();
+                s.pop();
+                postOrder.push_back(temp -> data);
+
+                // latest parent ka agar parent hai s.top() tab tak hi LOOP chalayenge [ temp = s.top()->right ]
+                while (!s.empty() && temp == s.top()->right) {
+                    temp = s.top();
+                    s.pop();
+                    postOrder.push_back(temp -> data);
+                }
+
+            } 
+            // set curr to right child
+            else{
+                curr = temp;
+            } 
+        }
+    }
+
+    return postOrder;
+
+}
+
+
 
 int main() {
 
@@ -95,7 +156,7 @@ int main() {
   root -> right -> right -> right = new node(10);
 
   vector < int > postOrder;
-  postOrder = iterativePostOrderTraversal(root);
+  postOrder = IterativePostOrderTraversal(root);
 
   cout << "The postOrder Traversal is : ";
   for (int i = 0; i < postOrder.size(); i++) {
