@@ -22,9 +22,13 @@
 using namespace std;
 
 bool searchInARotatedSortedArrayII(vector<int>&arr, int k) {
+
     int n = arr.size(); // size of the array.
+
     int low = 0, high = n - 1;
+
     while (low <= high) {
+        
         int mid = (low + high) / 2;
 
         //if mid points the target

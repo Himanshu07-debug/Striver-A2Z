@@ -15,6 +15,7 @@
 using namespace std;
 
 int findAllSubarraysWithGivenSum(vector < int > & arr, int k) {
+    
     int n = arr.size(); // size of the given array.
     unordered_map<int,int> mpp;
     int preSum = 0, cnt = 0;

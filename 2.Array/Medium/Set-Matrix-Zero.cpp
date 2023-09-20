@@ -112,8 +112,8 @@ vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
 // I/P matrix ke first row aur first column me 0 hai ki nhi yeah handle krne ke liye hum row and col naam ke 2 bool 
 // varaibles le sakte hai jo batayenge ki O/P matrix me first row ko OR first column ko 0 krna hai kya
 
-// OBSERVE, there is no need of taking marker variable for row, kyuki agar usme hua to matrix[0][0] ko update kar denga
-// wo, hum usase check kar payenge, humko sirf j ko handle krna hai
+// OBSERVE, we can reduce the need of taking marker variable for row, kyuki agar usme hua to matrix[0][0] ko update kar 
+// denga wo, hum usase check kar payenge, humko sirf j ko handle krna hai
 
 // TIME -> O( 2*(N*M) )
 // SPACE -> O(1)

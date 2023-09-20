@@ -14,12 +14,18 @@
 using namespace std;
 
 int findKRotation(vector<int> &arr) {
+
     int low = 0, high = arr.size() - 1;
     int ans = INT_MAX;
     int index = -1;
+
     while (low <= high) {
+
         int mid = (low + high) / 2;
 
+        // OPTMIZATION --------------------> 
+        // If at any moment, agar humko completely sorted mil gya search space, Now directly while loop will break, we
+        // will not get any element minimum than arr[low], check it and break, no need to do further computation
         if (arr[low] <= arr[high]) {
             if (arr[low] < ans) {
                 // Storing indexes
@@ -40,7 +46,8 @@ int findKRotation(vector<int> &arr) {
             // Eliminate left half:
             low = mid + 1;
         }
-        else { //if right part is sorted:
+        else { 
+            //if right part is sorted:
 
             // keep the minimum:
             if (arr[mid] < ans) {
